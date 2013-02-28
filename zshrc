@@ -29,12 +29,14 @@ promptinit
 export EDITOR=vim
 
 # Aliases
-alias ls='ls --color=auto -F -h'
+alias ls='ls -F -h'
 alias grep='grep --color=auto'
 alias rm='rm -v'
 alias vim='vim -p'
-alias yum='yum --color=auto'
-alias open='gnome-open'
+alias vi='vim -p'
+## git aliases
+alias gcm='git commit -m'
+alias gits='git status'
 
 topit() { /usr/bin/top -p `pgrep $1` }
 vimfind() { find -name $1 -exec vim -p {} + }
@@ -62,7 +64,10 @@ prompt trevor 014 blue red default yellow
 compdef -a _cabal cabal
 
 # use the default dircolors, despite the awesome 256 color palette
-eval `dircolors -b /etc/DIR_COLORS`
+DIRCOL=`which dircolors`
+if [[ -f $DIRCOL ]] ; then
+    eval `dircolors`
+fi
 
 # load in local config, if available
 if [[ -f ~/.zsh/site-config ]]; then
