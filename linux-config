@@ -1,0 +1,13 @@
+# linux zsh config
+
+# use the default dircolors, despite the awesome 256 color palette
+eval `dircolors`
+
+alias ls='ls --color=auto -F -h'
+alias grep='grep --color=auto'
+
+## google-chrome
+alias chrome='google-chrome &> /dev/null &'
+
+## Dropbox
+alias dropboxd='~/.dropbox-dist/dropboxd'

@@ -28,21 +28,8 @@ promptinit
 
 export EDITOR=vim
 
-# Aliases
-alias ls='ls -F -h'
-alias grep='grep --color=auto'
-alias rm='rm -v'
-alias vim='vim -p'
-alias gits='git status'
-alias gcm='git commit -m'
-
 topit() { /usr/bin/top -p `pgrep $1` }
 vimfind() { find -name $1 -exec vim -p {} + }
-
-# ghc switching
-use_ghc() {
-  export PATH=$1/bin:$PATH
-}
 
 if [[ $TERM == "dumb" ]] ; then
   alias ls='ls --color=none'
@@ -62,6 +49,35 @@ prompt trevor 014 blue red default yellow
 compdef -a _cabal cabal
 
 # load in local config, if available
-if [[ -f ~/.zsh/site-config ]]; then
-  . ~/.zsh/site-config
+DARWIN=`uname -a | grep Darwin`
+if [ -z $DARWIN ]; then
+  if [[ -f ~/.zsh/osx-config ]]; then
+    . ~/.zsh/osx-config
+  fi
+else
+  if [[ -f ~/.zsh/linux-config ]]; then
+    . ~/.zsh/linux-config
+  fi
 fi
+
+# Aliases
+alias rm='rm -v'
+alias vim='vim -p'
+alias vi='vim -p'
+
+## git aliases
+alias gcm='git commit -m'
+alias gits='git status'
+
+## python webserver
+alias pyserve='python -m SimpleHTTPServer'
+
+## sage aliases
+alias mysage='~/sage/latest/sage'
+
+## misc
+alias l.='ls -la .'
+alias ll='ls -l'
+alias la='ls -la'
+alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+alias fn='find . -name $@'
