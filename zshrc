@@ -51,12 +51,14 @@ compdef -a _cabal cabal
 # load in local config, if available
 DARWIN=`uname -a | grep Darwin`
 if [ -z $DARWIN ]; then
-  if [[ -f ~/.zsh/osx-config ]]; then
-    . ~/.zsh/osx-config
-  fi
-else
+  echo Loading linux configuration
   if [[ -f ~/.zsh/linux-config ]]; then
     . ~/.zsh/linux-config
+  fi
+else
+  echo Loading OS X configuration
+  if [[ -f ~/.zsh/osx-config ]]; then
+    . ~/.zsh/osx-config
   fi
 fi
 
