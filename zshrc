@@ -28,23 +28,8 @@ promptinit
 
 export EDITOR=vim
 
-# Aliases
-alias ls='ls -F -h'
-alias grep='grep --color=auto'
-alias rm='rm -v'
-alias vim='vim -p'
-alias vi='vim -p'
-## git aliases
-alias gcm='git commit -m'
-alias gits='git status'
-
 topit() { /usr/bin/top -p `pgrep $1` }
 vimfind() { find -name $1 -exec vim -p {} + }
-
-# ghc switching
-use_ghc() {
-  export PATH=$1/bin:$PATH
-}
 
 if [[ $TERM == "dumb" ]] ; then
   alias ls='ls --color=none'
@@ -63,13 +48,41 @@ prompt trevor 014 blue red default yellow
 # cabal completion
 compdef -a _cabal cabal
 
-# use the default dircolors, despite the awesome 256 color palette
-DIRCOL=`which dircolors`
-if [[ -f $DIRCOL ]] ; then
-    eval `dircolors`
+# load in local config, if available
+DARWIN=`uname -a | grep Darwin`
+if [ -z $DARWIN ]; then
+  echo Loading linux configuration
+  if [[ -f ~/.zsh/linux-config ]]; then
+    . ~/.zsh/linux-config
+  fi
+else
+  echo Loading OS X configuration
+  if [[ -f ~/.zsh/osx-config ]]; then
+    . ~/.zsh/osx-config
+  fi
 fi
 
-# load in local config, if available
-if [[ -f ~/.zsh/site-config ]]; then
-  . ~/.zsh/site-config
-fi
+# Aliases
+alias rm='rm -v'
+alias vim='vim -p'
+alias vi='vim -p'
+
+## git aliases
+alias gcm='git commit -m'
+alias gits='git status'
+
+## python webserver
+alias pyserve='python -m SimpleHTTPServer'
+
+## sage aliases
+alias mysage='~/sage/latest/sage'
+
+## misc
+alias l.='ls -la .'
+alias ll='ls -l'
+alias la='ls -la'
+alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+alias fn='find . -name $@'
+
+# Custom PATH additions
+export PATH=$PATH:$HOME/.cabal/bin
