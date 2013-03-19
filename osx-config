@@ -1,0 +1,4 @@
+# osx zsh config
+
+alias ls='ls -hG'
+alias grep='grep --color=auto'
