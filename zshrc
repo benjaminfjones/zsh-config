@@ -42,9 +42,6 @@ if [[ $TERM == "xterm" ]] ; then
   export TERM="xterm-256color"
 fi
 
-# prompt
-# prompt trevor 014 blue red default yellow
-
 # cabal completion
 compdef -a _cabal cabal
 
@@ -87,7 +84,7 @@ alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 alias fn='find . -name $@'
 
 # Custom PATH additions
-export PATH=$PATH:$HOME/.cabal/bin
+export PATH=/usr/local/bin:$PATH:$HOME/.cabal/bin:$HOME/bin
 
 
 ### OH _ MY _ ZSH ###
@@ -128,3 +125,19 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+unsetopt correct
+unsetopt correct_all
+
+
+# Hygenic Python Environment
+# virtualenv should use Distribute instead of legacy setuptools
+
+export VIRTUALENV_DISTRIBUTE=true
+# Centralized location for new virtual environments
+export PIP_VIRTUALENV_BASE=$HOME/Virtualenvs
+# pip should only run if there is a virtualenv currently activated
+export PIP_REQUIRE_VIRTUALENV=true
+# cache pip-installed packages to avoid re-downloading
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+# if we really want to use pip globally
+syspip(){ PIP_REQUIRE_VIRTUALENV="" pip "$@" }
