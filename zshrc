@@ -84,7 +84,7 @@ alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 alias fn='find . -name $@'
 
 # Custom PATH additions
-export PATH=/usr/local/bin:$PATH:$HOME/.cabal/bin:$HOME/bin
+export PATH=$HOME/.cabal/bin:$HOME/bin:/usr/local/bin:$PATH
 
 
 ### OH _ MY _ ZSH ###
@@ -97,7 +97,11 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="terminalparty"
+#ZSH_THEME="terminalparty"
+#ZSH_THEME="blinks"
+#ZSH_THEME="random"
+ZSH_THEME="mrtazz"
+
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -141,3 +145,5 @@ export PIP_REQUIRE_VIRTUALENV=true
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 # if we really want to use pip globally
 syspip(){ PIP_REQUIRE_VIRTUALENV="" pip "$@" }
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
