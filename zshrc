@@ -131,19 +131,3 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 unsetopt correct
 unsetopt correct_all
-
-
-# Hygenic Python Environment
-# virtualenv should use Distribute instead of legacy setuptools
-
-export VIRTUALENV_DISTRIBUTE=true
-# Centralized location for new virtual environments
-export PIP_VIRTUALENV_BASE=$HOME/Virtualenvs
-# pip should only run if there is a virtualenv currently activated
-export PIP_REQUIRE_VIRTUALENV=true
-# cache pip-installed packages to avoid re-downloading
-export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
-# if we really want to use pip globally
-syspip(){ PIP_REQUIRE_VIRTUALENV="" pip "$@" }
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
