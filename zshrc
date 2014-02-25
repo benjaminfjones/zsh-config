@@ -76,6 +76,9 @@ alias pyserve='python -m SimpleHTTPServer'
 ## sage aliases
 alias mysage='~/sage/latest/sage'
 
+## unison
+alias uab='unison -auto -batch'
+
 ## misc
 alias l.='ls -la .'
 alias ll='ls -l'
